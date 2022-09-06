@@ -1,0 +1,5 @@
+const SPORT_ACTIONS = {
+  SET_COUNTRIES_INFO: 'SET_COUNTRIES_INFO',
+};
+
+export default SPORT_ACTIONS;
