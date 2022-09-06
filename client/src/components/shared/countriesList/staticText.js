@@ -3,9 +3,9 @@ const STATIC_TEXT = {
 	noCountryAdded: 'No country added yet',
 	addCountry:'Go to add page',
 	country: 'Countries :',
-	state: 'States :',
-	city: 'Cities :',
-	town: 'Towns :',
+	state: 'States List :',
+	city: 'Cities List :',
+	town: 'Towns List :',
 
 };
 

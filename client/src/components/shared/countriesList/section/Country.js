@@ -7,6 +7,7 @@ import {
 	ListItemText,
 	Collapse,
 	List,
+	Typography,
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
@@ -53,6 +54,13 @@ const Country = ({ country, countriesInfo }) => {
 
 			<Collapse in={showState} timeout="auto" unmountOnExit>
 				<List>
+					<Typography
+						color={theme.palette.primary.light}
+						sx={{ textAlign: 'left', ml: 3 }}
+						variant="h5"
+					>
+						{STATIC_TEXT.state}
+					</Typography>
 					{countriesInfo.State.map((state, index) => {
 						if (country.intCountryID === state.intCountryID)
 							return (

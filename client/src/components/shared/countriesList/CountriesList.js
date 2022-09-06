@@ -40,13 +40,14 @@ const CountriesList = () => {
 						{
 							<Typography
 								color={theme.palette.primary.light}
-								sx={{ textAlign: 'left', mb: 5, ml: 2, mt: 2 }}
+								sx={{ textAlign: 'left', mb: 3, ml: 2, mt: 2 }}
 								variant="h4"
 							>
 								{countriesInfo.Country[0] ? STATIC_TEXT.countryList : STATIC_TEXT.noCountryAdded}
 							</Typography>
 						}
-						<Box sx={{ pl: 3 }}>
+
+						<Box>
 							{countriesInfo.Country &&
 								countriesInfo.Country.map((country, index) => {
 									return <Country key={index} country={country} countriesInfo={countriesInfo} />;
