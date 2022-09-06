@@ -39,7 +39,7 @@ const CountriesList = () => {
 					<Box>
 						{
 							<Typography
-								color={theme.palette.primary.light}
+								color={theme.palette.typography.main}
 								sx={{ textAlign: 'left', mb: 3, ml: 2, mt: 2 }}
 								variant="h4"
 							>

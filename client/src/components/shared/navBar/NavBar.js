@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import STATIC_TEXT from './staticText';
 import ScrollTo from '../Utilities/ScrollTo/ScrollTo';
 import { Box, Button } from '@mui/material';
-
+import { useTheme } from '@mui/material/styles';
 import './style.scss';
 
 const NavBar = () => {
+	const theme = useTheme();
 	const navigate = useNavigate();
 	const [toggleOpen, setToggleOpen] = useState(false);
 
@@ -26,7 +27,11 @@ const NavBar = () => {
 	);
 
 	return (
-		<nav id="nav-bar" className="navBar-container ">
+		<nav
+			id="nav-bar"
+			className="navBar-container "
+			style={{ backgroundColor: theme.palette.black.main }}
+		>
 			<Box className="logo">
 				<ScrollTo componentId={'home'}>{STATIC_TEXT.logo}</ScrollTo>
 			</Box>

@@ -55,7 +55,7 @@ const Country = ({ country, countriesInfo }) => {
 			<Collapse in={showState} timeout="auto" unmountOnExit>
 				<List>
 					<Typography
-						color={theme.palette.primary.light}
+						color={theme.palette.typography.main}
 						sx={{ textAlign: 'left', ml: 3 }}
 						variant="h5"
 					>

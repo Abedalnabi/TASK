@@ -1,7 +1,9 @@
 import React from 'react';
 import './style.scss';
+import { useTheme } from '@mui/material/styles';
 
 const Footer = () => {
+	const theme = useTheme();
 	return (
 		<footer
 			style={{
@@ -9,6 +11,7 @@ const Footer = () => {
 				flexDirection: 'column',
 				justifyContent: 'center',
 				alignItems: 'center',
+				backgroundColor: theme.palette.black.main,
 			}}
 		>
 			<p style={{ color: 'white' }} className="">
