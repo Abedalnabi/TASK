@@ -19,7 +19,7 @@ const State = ({ state, countriesInfo }) => {
 	const [showCity, setShowCity] = useState(false);
 	const theme = useTheme();
 
-	const handleClick = (event) => {
+	const handleClick = () => {
 		setShowCity(!showCity);
 	};
 
@@ -50,10 +50,11 @@ const State = ({ state, countriesInfo }) => {
 					<ExpandMore sx={{ color: theme.palette.black.main }} />
 				)}
 			</ListItemButton>
+
 			<Collapse in={showCity} timeout="auto" unmountOnExit>
 				<List>
 					<Typography
-						color={theme.palette.primary.light}
+						color={theme.palette.typography.main}
 						sx={{ textAlign: 'left', ml: 3 }}
 						variant="h5"
 					>

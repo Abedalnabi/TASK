@@ -28,11 +28,13 @@ const Country = ({ country, countriesInfo }) => {
 		<Box>
 			<ListItemButton
 				sx={{
-					bgcolor: theme.palette.primary.main,
+					bgcolor: showState
+						? theme.palette.primary.dark
+						: theme.palette.primary.light,
 					border: '1px solid black',
 					color: 'black',
 					'&:hover': {
-						background: theme.palette.primary.dark,
+						background: theme.palette.primary.main,
 					},
 					m: 2,
 				}}
