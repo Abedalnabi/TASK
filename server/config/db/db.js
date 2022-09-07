@@ -22,6 +22,9 @@ db.tblCountry = require('./models/country')(sequelize, Sequelize);
 db.tblState = require('./models/state')(sequelize, Sequelize);
 db.tblCity = require('./models/city')(sequelize, Sequelize);
 db.tblTown = require('./models/town')(sequelize, Sequelize);
+db.tblProduct = require('./models/product')(sequelize, Sequelize);
+db.tblSubProduct = require('./models/subProduct')(sequelize, Sequelize);
+
 
 // create tables if not exists
 sequelize.sync().then(() => {

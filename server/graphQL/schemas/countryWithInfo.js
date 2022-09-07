@@ -1,9 +1,7 @@
 exports.CountryWithInfo = `
 type CountryWithInfo {
-    Country:[Country],
-    State:[State],
-    City:[City],
-    Town:[Town]
+    Product:[Product],
+  
 }
 `;
 
@@ -13,6 +11,9 @@ input CountryWithInfoInput {
     strState:String!,
     strCity:String!,
     strTown:String!,
+    strProductName:String!,
+    strSubProduct:String!,
+
 }
 `;
 

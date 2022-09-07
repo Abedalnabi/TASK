@@ -3,6 +3,8 @@ const countrySchema = require('./schemas/country');
 const stateSchema = require('./schemas/state');
 const citySchema = require('./schemas/city');
 const townSchema = require('./schemas/town');
+const productSchema = require('./schemas/Product');
+
 const countryWithInfoSchema = require('./schemas/countryWithInfo');
 
 module.exports = buildSchema(
@@ -22,6 +24,10 @@ module.exports = buildSchema(
         ${countryWithInfoSchema.CountryWithInfo}
         ${countryWithInfoSchema.CountryWithInfoInput}
 
+        ${productSchema.Product}
+        ${productSchema.ProductInput}
+
+
         type RootQuery {
             ${countrySchema.CountryQueries}
             ${stateSchema.StateQueries}
@@ -35,7 +41,10 @@ module.exports = buildSchema(
             ${stateSchema.StateMutation}
             ${citySchema.CityMutation}
             ${townSchema.TownMutation}
+            ${productSchema.ProductMutation}
+
             ${countryWithInfoSchema.CountryWithInfoMutation}
+
 
         }
 

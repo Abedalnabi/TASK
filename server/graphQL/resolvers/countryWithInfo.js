@@ -2,25 +2,85 @@ const { addCountry, getAllCountries } = require('./country');
 const { addState, getAllStates } = require('./state');
 const { addCity, getAllCity } = require('./city');
 const { addTown, getAllTowns } = require('./town');
+const { addProduct } = require('./product');
+const { addSubProduct } = require('./subProduct');
+
+
+const db = require('../../config/db/db');
+const { tblProduct } = db;
 
 module.exports = {
-  getAllCountryWithInfo: async () => {
-    const countries = await getAllCountries();
-    const states = await getAllStates();
-    const cities = await getAllCity();
-    const towns = await getAllTowns();
+	getAllCountryWithInfo: async () => {
+		const data = await tblProduct.findAll();
 
-    return { Country: countries, State: states, City: cities, Town: towns };
-  },
+		return { Product: data };
 
-  addCountryWithInfo: async (args) => {
-    const { strCountry, strState, strCity, strTown } = args.countryWithInfoInput;
+		let country = { allIds: [] };
+		let town = { allIds: [] };
 
-    const { intCountryID } = await addCountry({ strCountry });
-    const { intStateID } = await addState({ strState, intCountryID });
-    const { intCityID } = await addCity({ strCity, intStateID });
-    await addTown({ strTown, intCityID });
+		data.forEach((ele) => {
+			// console.log('ele.intCountryID', ele.dataValues);
 
-    return 'Country with related information created';
-  },
+			const intCountryID = ele.intCountryID;
+			const intTownID = ele.intTownID;
+
+			// add Country
+			if (!country[intCountryID]) {
+				country[intCountryID] = { strCountry: ele.strCountry };
+				country.allIds.push(intCountryID);
+			}
+			if (!country[intCountryID].States) {
+				country[intCountryID].States = [];
+			}
+			if (!town[intTownID]) {
+				country[intCountryID].States.push(intTownID);
+			}
+
+			// Add Town
+			if (!town[intTownID]) {
+				town[intTownID] = { strTown: ele.strTown };
+				town.allIds.push(intTownID);
+			}
+
+			if (!town[intTownID].Product) {
+				town[intTownID].Product = [];
+			}
+
+			town[intTownID].Product.push(ele.intProductID);
+		});
+		console.log('country', country);
+		console.log('town', town);
+
+		return { Country: JSON.stringify(country), Town: JSON.stringify(town) };
+	},
+
+	addCountryWithInfo: async (args) => {
+		const {
+			strCountry,
+			strState,
+			strCity,
+			strTown,
+			strProductName,
+			strSubProduct,
+		} = args.countryWithInfoInput;
+
+		const { intCountryID } = await addCountry({ strCountry });
+		const { intStateID } = await addState({ strState, intCountryID });
+		const { intCityID } = await addCity({ strCity, intStateID });
+		const { intTownID } = await addTown({ strTown, intCityID });
+		const { intProductID } = await addProduct({
+			strCountry,
+			strState,
+			strCity,
+			strTown,
+			strProductName,
+			intCountryID,
+			intStateID,
+			intCityID,
+			intTownID,
+		});
+        await addSubProduct({strSubProduct:'da',intProductID})
+
+		return 'Country with related information created';
+	},
 };
