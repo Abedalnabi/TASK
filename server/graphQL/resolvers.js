@@ -2,14 +2,14 @@ const countryResolver = require('./resolvers/country');
 const stateResolver = require('./resolvers/state');
 const cityResolver = require('./resolvers/city');
 const townResolver = require('./resolvers/town');
-const countryWithInfoResolver = require('./resolvers/countryWithInfo');
+const productWithInfoSchema = require('./resolvers/productWithInfo');
 
 const rootResolver = {
   ...countryResolver,
   ...stateResolver,
   ...cityResolver,
   ...townResolver,
-  ...countryWithInfoResolver,
+  ...productWithInfoSchema,
 };
 
 module.exports = rootResolver;

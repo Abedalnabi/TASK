@@ -23,7 +23,7 @@ module.exports = {
         },
       });
 
-      if (!created) throw new Error('Town Already Exist');
+      if (!created && args.townInput) throw new Error('Town Already Exist');
 
       const newTownInfo = Town.dataValues;
 

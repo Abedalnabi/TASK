@@ -4,57 +4,54 @@ const { Op } = Sequelize;
 const { tblProduct, tblSubProduct } = db;
 
 module.exports = {
-	getAllProduct: async () => {
-		try {
-			const data = await tblProduct.findAll();
+  getAllProduct: async () => {
+    try {
+      const data = await tblProduct.findAll();
 
-			return { Product: data };
-		} catch (err) {
-			throw new Error(err);
-		}
-	},
+      return { Product: data };
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 
-	addProduct: async (args) => {
-		const {
-			strProductName,
-			strCountry,
-			strState,
-			strCity,
-			strTown,
+  addProduct: async (args) => {
+    const {
+      strProductName,
+      strCountry,
+      strState,
+      strCity,
+      strTown,
       intCountryID,
-			intStateID,
-			intCityID,
-			intTownID,
-		} = args.productInput || args;
+      intStateID,
+      intCityID,
+      intTownID,
+    } = args.productInput || args;
 
-		try {
-			const [Product, created] = await tblProduct.findOrCreate({
-				where: {
-					[Op.and]: [
-						{ strProductName: strProductName },
-						{ intTownID: intTownID },
-					],
-				},
-				defaults: {
-					strProductName,
-					strCountry,
-					strState,
-					strCity,
-					strTown,
+    try {
+      const [Product, created] = await tblProduct.findOrCreate({
+        where: {
+          [Op.and]: [{ strProductName: strProductName }, { intTownID: intTownID }],
+        },
+        defaults: {
+          strProductName,
+          strCountry,
+          strState,
+          strCity,
+          strTown,
           intCountryID,
           intStateID,
           intCityID,
           intTownID,
-				},
-			});
+        },
+      });
 
-			if (!created && args.stateInput) throw new Error('product Already Exist');
+      if (!created && args.productInput) throw new Error('product Already Exist');
 
-			const newProductInfo = Product.dataValues;
+      const newProductInfo = Product.dataValues;
 
-			return newProductInfo;
-		} catch (err) {
-			throw new Error(err);
-		}
-	},
+      return newProductInfo;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 };

@@ -6,6 +6,7 @@ type Product {
     strState:String,
     strCity:String,
     strTown:String,
+    strSUpProductName:String,
     intCountryID:Int,
     intStateID:Int,
     intCityID:Int,

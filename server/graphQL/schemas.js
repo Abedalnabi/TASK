@@ -5,7 +5,7 @@ const citySchema = require('./schemas/city');
 const townSchema = require('./schemas/town');
 const productSchema = require('./schemas/Product');
 
-const countryWithInfoSchema = require('./schemas/countryWithInfo');
+const productWithInfoSchema = require('./schemas/productWithInfo');
 
 module.exports = buildSchema(
   `
@@ -21,8 +21,8 @@ module.exports = buildSchema(
         ${townSchema.Town}
         ${townSchema.TownInput}
 
-        ${countryWithInfoSchema.CountryWithInfo}
-        ${countryWithInfoSchema.CountryWithInfoInput}
+        ${productWithInfoSchema.ProductWithInfo}
+        ${productWithInfoSchema.ProductWithInfoInput}
 
         ${productSchema.Product}
         ${productSchema.ProductInput}
@@ -33,7 +33,7 @@ module.exports = buildSchema(
             ${stateSchema.StateQueries}
             ${citySchema.CityQueries}
             ${townSchema.TownQueries}
-            ${countryWithInfoSchema.CountryDetailsQueries}
+            ${productWithInfoSchema.ProductWithInfoQueries}
         }
 
         type RootMutation {
@@ -43,7 +43,7 @@ module.exports = buildSchema(
             ${townSchema.TownMutation}
             ${productSchema.ProductMutation}
 
-            ${countryWithInfoSchema.CountryWithInfoMutation}
+            ${productWithInfoSchema.ProductWithInfoMutation}
 
 
         }
