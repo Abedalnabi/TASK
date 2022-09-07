@@ -6,12 +6,19 @@ const { addProduct } = require('./product');
 const { addSubProduct } = require('./subProduct');
 
 const db = require('../../config/db/db');
-const { tblProduct } = db;
+const { tblSubProduct } = require('../../config/db/db');
+const { tblProduct, sequelize } = db;
+const { QueryTypes } = require('sequelize');
+// const Sequelize = require('sequelize');
 
 module.exports = {
   getAllProductWithInfo: async () => {
-    const data = await tblProduct.findAll({});
-    return { Product: data };
+    let data1 = await sequelize.query(
+      'SELECT * FROM Product inner join SubProduct on Product.intProductID = SubProduct.intProductID',
+      { type: QueryTypes.SELECT }
+    );
+
+    return { Product: data1 };
 
     // let country = { allIds: [] };
     // let town = { allIds: [] };

@@ -6,11 +6,13 @@ type Product {
     strState:String,
     strCity:String,
     strTown:String,
-    strSUpProductName:String,
+    strSUbProductName:String,
     intCountryID:Int,
     intStateID:Int,
     intCityID:Int,
     intTownID:Int,
+    intSubProductID:Int,
+
 }
 `;
 
