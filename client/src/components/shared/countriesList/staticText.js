@@ -6,6 +6,9 @@ const STATIC_TEXT = {
 	state: 'States List :',
 	city: 'Cities List :',
 	town: 'Towns List :',
+	product: 'Product List :',
+	subProduct: 'Sub product List :',
+
 
 };
 

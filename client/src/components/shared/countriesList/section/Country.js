@@ -62,7 +62,6 @@ const Country = ({ intCountryID, countriesInfo }) => {
 					</Typography>
 					{countriesInfo.country[intCountryID].States &&
 						countriesInfo.country[intCountryID].States.map((intStateID, index) => {
-							console.log('intStateID', intStateID);
 							return <State key={index} intStateID={intStateID} countriesInfo={countriesInfo} />;
 						})}
 				</List>

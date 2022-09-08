@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import { useTheme } from '@mui/material/styles';
 import {
 	Box,
 	Typography,
@@ -12,15 +10,17 @@ import {
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
 import STATIC_TEXT from '../staticText';
-import Product from './Product'
+import { useTheme } from '@mui/material/styles';
+import Town from './Town';
 
-const Town = ({ intTownID, countriesInfo }) => {
-	const [showProduct, setShowProduct] = useState(false);
+const SubProduct = ({ intSubProductID, countriesInfo }) => {
+	const [showTown, setShowTown] = useState(false);
 	const theme = useTheme();
 
 	const handleClick = () => {
-		setShowProduct(!showProduct);
+		setShowTown(!showTown);
 	};
 
 	return (
@@ -41,32 +41,17 @@ const Town = ({ intTownID, countriesInfo }) => {
 					<InboxIcon sx={{ color: theme.palette.black.main }} />
 				</ListItemIcon>
 				<ListItemText
-					primary={countriesInfo.town[intTownID].strTown}
+					primary={countriesInfo.subProduct[intSubProductID].strSUbProductName}
 					sx={{ color: theme.palette.black.main }}
 				/>
-				{showProduct ? (
+				{showTown ? (
 					<ExpandLess sx={{ color: theme.palette.black.main }} />
 				) : (
 					<ExpandMore sx={{ color: theme.palette.black.main }} />
 				)}
 			</ListItemButton>
-
-			<Collapse in={showProduct} timeout="auto" unmountOnExit>
-				<List>
-					<Typography
-						color={theme.palette.typography.main}
-						sx={{ textAlign: 'left', ml: 3 }}
-						variant="h5"
-					>
-						{STATIC_TEXT.product}
-					</Typography>
-					{countriesInfo.town[intTownID].Product.map((intProductID, index) => {
-						return <Product key={index} intProductID={intProductID} countriesInfo={countriesInfo} />;
-					})}
-				</List>
-			</Collapse>
 		</Box>
 	);
 };
 
-export default Town;
+export default SubProduct;

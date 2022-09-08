@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import { useTheme } from '@mui/material/styles';
 import {
 	Box,
 	Typography,
@@ -12,15 +10,17 @@ import {
 } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
 import STATIC_TEXT from '../staticText';
-import Product from './Product'
+import { useTheme } from '@mui/material/styles';
+import SubProduct from './SubProduct';
 
-const Town = ({ intTownID, countriesInfo }) => {
-	const [showProduct, setShowProduct] = useState(false);
+const Product = ({ intProductID, countriesInfo }) => {
+	const [showSubProduct, setShowSubProduct] = useState(false);
 	const theme = useTheme();
 
 	const handleClick = () => {
-		setShowProduct(!showProduct);
+		setShowSubProduct(!showSubProduct);
 	};
 
 	return (
@@ -41,27 +41,28 @@ const Town = ({ intTownID, countriesInfo }) => {
 					<InboxIcon sx={{ color: theme.palette.black.main }} />
 				</ListItemIcon>
 				<ListItemText
-					primary={countriesInfo.town[intTownID].strTown}
+					primary={countriesInfo.product[intProductID].strProductName}
 					sx={{ color: theme.palette.black.main }}
 				/>
-				{showProduct ? (
+				{showSubProduct ? (
 					<ExpandLess sx={{ color: theme.palette.black.main }} />
 				) : (
 					<ExpandMore sx={{ color: theme.palette.black.main }} />
 				)}
 			</ListItemButton>
 
-			<Collapse in={showProduct} timeout="auto" unmountOnExit>
+
+			<Collapse in={showSubProduct} timeout="auto" unmountOnExit>
 				<List>
 					<Typography
 						color={theme.palette.typography.main}
 						sx={{ textAlign: 'left', ml: 3 }}
 						variant="h5"
 					>
-						{STATIC_TEXT.product}
+						{STATIC_TEXT.subProduct}
 					</Typography>
-					{countriesInfo.town[intTownID].Product.map((intProductID, index) => {
-						return <Product key={index} intProductID={intProductID} countriesInfo={countriesInfo} />;
+					{countriesInfo.product[intProductID].SubProduct.map((intSubProductID, index) => {
+						return <SubProduct key={index} intSubProductID={intSubProductID} countriesInfo={countriesInfo} />;
 					})}
 				</List>
 			</Collapse>
@@ -69,4 +70,4 @@ const Town = ({ intTownID, countriesInfo }) => {
 	);
 };
 
-export default Town;
+export default Product;
