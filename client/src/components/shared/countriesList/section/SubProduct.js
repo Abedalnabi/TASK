@@ -16,11 +16,11 @@ import { useTheme } from '@mui/material/styles';
 import Town from './Town';
 
 const SubProduct = ({ intSubProductID, countriesInfo }) => {
-	const [showTown, setShowTown] = useState(false);
+	const [showSub, setShowSub] = useState(false);
 	const theme = useTheme();
 
 	const handleClick = () => {
-		setShowTown(!showTown);
+		setShowSub(!showSub);
 	};
 
 	return (
@@ -44,11 +44,7 @@ const SubProduct = ({ intSubProductID, countriesInfo }) => {
 					primary={countriesInfo.subProduct[intSubProductID].strSUbProductName}
 					sx={{ color: theme.palette.black.main }}
 				/>
-				{showTown ? (
-					<ExpandLess sx={{ color: theme.palette.black.main }} />
-				) : (
-					<ExpandMore sx={{ color: theme.palette.black.main }} />
-				)}
+
 			</ListItemButton>
 		</Box>
 	);
