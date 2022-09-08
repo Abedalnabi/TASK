@@ -1,10 +1,27 @@
-import React from 'react';
-import { Box, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import React,{useState} from 'react';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { useTheme } from '@mui/material/styles';
+import {
+	Box,
+	Typography,
+	ListItemButton,
+	ListItemIcon,
+	ListItemText,
+	Collapse,
+	List,
+} from '@mui/material';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
-const Town = ({ town }) => {
+
+const Town = ({ intTownID ,countriesInfo }) => {
+	const [showProduct, setShowProduct] = useState(false);
 	const theme = useTheme();
+
+	const handleClick = () => {
+		setShowProduct(!showProduct);
+	};
+
 	return (
 		<Box sx={{ pl: 2 }}>
 			<ListItemButton
@@ -17,15 +34,36 @@ const Town = ({ town }) => {
 					},
 					m: 2,
 				}}
+				onClick={handleClick}
 			>
 				<ListItemIcon>
 					<InboxIcon sx={{ color: theme.palette.black.main }} />
 				</ListItemIcon>
 				<ListItemText
-					primary={town.strTown}
+					primary={countriesInfo.town[intTownID].strTown}
 					sx={{ color: theme.palette.black.main }}
 				/>
+				{showProduct ? (
+					<ExpandLess sx={{ color: theme.palette.black.main }} />
+				) : (
+					<ExpandMore sx={{ color: theme.palette.black.main }} />
+				)}
 			</ListItemButton>
+
+			{/* <Collapse in={showTown} timeout="auto" unmountOnExit>
+				<List>
+					<Typography
+						color={theme.palette.typography.main}
+						sx={{ textAlign: 'left', ml: 3 }}
+						variant="h5"
+					>
+						{STATIC_TEXT.town}
+					</Typography>
+					{countriesInfo.city[intCityID].City.map((intTownID, index) => {
+						return <Town key={index} intTownID={intTownID} countriesInfo={countriesInfo} />;
+					})}
+				</List>
+			</Collapse> */}
 		</Box>
 	);
 };

@@ -15,10 +15,11 @@ import STATIC_TEXT from '../staticText';
 import { useTheme } from '@mui/material/styles';
 import Town from './Town';
 
-const City = ({ city, countriesInfo }) => {
+const City = ({ intCityID, countriesInfo }) => {
 	const [showTown, setShowTown] = useState(false);
 	const theme = useTheme();
 
+	console.log('countriesInfo.city[intCityID]', countriesInfo.city[intCityID])
 	const handleClick = () => {
 		setShowTown(!showTown);
 	};
@@ -41,7 +42,7 @@ const City = ({ city, countriesInfo }) => {
 					<InboxIcon sx={{ color: theme.palette.black.main }} />
 				</ListItemIcon>
 				<ListItemText
-					primary={city.strCity}
+					primary={countriesInfo.city[intCityID].strCity}
 					sx={{ color: theme.palette.black.main }}
 				/>
 				{showTown ? (
@@ -50,6 +51,7 @@ const City = ({ city, countriesInfo }) => {
 					<ExpandMore sx={{ color: theme.palette.black.main }} />
 				)}
 			</ListItemButton>
+
 
 			<Collapse in={showTown} timeout="auto" unmountOnExit>
 				<List>
@@ -60,12 +62,8 @@ const City = ({ city, countriesInfo }) => {
 					>
 						{STATIC_TEXT.town}
 					</Typography>
-					{countriesInfo.Town.map((town, index) => {
-						if (city.intCityID === town.intCityID)
-							return (
-								<Town key={index} town={town} countriesInfo={countriesInfo} />
-							);
-						return '';
+					{countriesInfo.city[intCityID].Town && countriesInfo.city[intCityID].Town.map((intTownID, index) => {
+						return <Town key={index} intTownID={intTownID} countriesInfo={countriesInfo} />;
 					})}
 				</List>
 			</Collapse>

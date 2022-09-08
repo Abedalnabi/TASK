@@ -26,27 +26,22 @@ export async function addProductWithInfo(countryInfo) {
   }
 }
 
-export async function getCountriesWithInfo() {
+export async function getAllProductWithInfo() {
   let query = `query {
-    getAllCountryWithInfo {
-      Country {
-        intCountryID
+    getAllProductWithInfo {
+      Product{
+        intProductID
+        strProductName
         strCountry
-      }
-      State {
-        intStateID
-        intCountryID
         strState
-      }
-      City {
-        intCityID
-        intStateID
         strCity
-      }
-      Town{
-        intTownID
-        intCityID
         strTown
+        strSUbProductName
+        intCountryID
+        intStateID
+        intCityID
+        intTownID
+        intSubProductID
       }
     }
   }`;
@@ -54,8 +49,8 @@ export async function getCountriesWithInfo() {
     const data = await axios.post(graphql, {
       query: query,
     });
-    const countryWithAllInfo = data.data.data.getAllCountryWithInfo;
-    return countryWithAllInfo;
+    const productWithInfo = data.data.data.getAllProductWithInfo;
+    return productWithInfo;
   } catch (error) {
     throw new Error(error);
   }

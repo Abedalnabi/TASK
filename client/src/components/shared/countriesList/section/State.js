@@ -15,7 +15,7 @@ import City from './City';
 import { useTheme } from '@mui/material/styles';
 import STATIC_TEXT from '../staticText';
 
-const State = ({ state, countriesInfo }) => {
+const State = ({ intStateID, countriesInfo }) => {
 	const [showCity, setShowCity] = useState(false);
 	const theme = useTheme();
 
@@ -41,7 +41,7 @@ const State = ({ state, countriesInfo }) => {
 					<InboxIcon sx={{ color: theme.palette.black.main }} />
 				</ListItemIcon>
 				<ListItemText
-					primary={state.strState}
+					primary={countriesInfo.state[intStateID].strState}
 					sx={{ color: theme.palette.black.main }}
 				/>
 				{showCity ? (
@@ -60,13 +60,10 @@ const State = ({ state, countriesInfo }) => {
 					>
 						{STATIC_TEXT.city}
 					</Typography>
-					{countriesInfo.City.map((city, index) => {
-						if (state.intStateID === city.intStateID)
-							return (
-								<City key={index} city={city} countriesInfo={countriesInfo} />
-							);
-						return '';
-					})}
+					{countriesInfo.state[intStateID].City &&
+						countriesInfo.state[intStateID].City.map((intCityID, index) => {
+							return <City key={index} intCityID={intCityID} countriesInfo={countriesInfo} />;
+						})}
 				</List>
 			</Collapse>
 		</Box>

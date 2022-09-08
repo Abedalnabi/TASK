@@ -13,12 +13,12 @@ const { QueryTypes } = require('sequelize');
 
 module.exports = {
   getAllProductWithInfo: async () => {
-    let data1 = await sequelize.query(
+    let data = await sequelize.query(
       'SELECT * FROM Product inner join SubProduct on Product.intProductID = SubProduct.intProductID',
       { type: QueryTypes.SELECT }
     );
 
-    return { Product: data1 };
+    return { Product: data};
 
     // let country = { allIds: [] };
     // let town = { allIds: [] };

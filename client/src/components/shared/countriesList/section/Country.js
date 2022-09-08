@@ -13,11 +13,10 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { useTheme } from '@mui/material/styles';
-import StarBorder from '@mui/icons-material/StarBorder';
 
 import STATIC_TEXT from '../staticText';
 
-const Country = ({ country, countriesInfo }) => {
+const Country = ({ intCountryID, countriesInfo }) => {
 	const [showState, setShowState] = useState(false);
 	const theme = useTheme();
 
@@ -28,9 +27,7 @@ const Country = ({ country, countriesInfo }) => {
 		<Box>
 			<ListItemButton
 				sx={{
-					bgcolor: showState
-						? theme.palette.primary.dark
-						: theme.palette.primary.light,
+					bgcolor: showState ? theme.palette.primary.dark : theme.palette.primary.light,
 					border: '1px solid black',
 					color: 'black',
 					'&:hover': {
@@ -44,7 +41,7 @@ const Country = ({ country, countriesInfo }) => {
 					<InboxIcon sx={{ color: theme.palette.black.main }} />
 				</ListItemIcon>
 				<ListItemText
-					primary={country.strCountry}
+					primary={countriesInfo.country[intCountryID].strCountry}
 					sx={{ color: theme.palette.black.main }}
 				/>
 				{showState ? (
@@ -63,17 +60,11 @@ const Country = ({ country, countriesInfo }) => {
 					>
 						{STATIC_TEXT.state}
 					</Typography>
-					{countriesInfo.State.map((state, index) => {
-						if (country.intCountryID === state.intCountryID)
-							return (
-								<State
-									key={index}
-									state={state}
-									countriesInfo={countriesInfo}
-								/>
-							);
-						return '';
-					})}
+					{countriesInfo.country[intCountryID].States &&
+						countriesInfo.country[intCountryID].States.map((intStateID, index) => {
+							console.log('intStateID', intStateID);
+							return <State key={index} intStateID={intStateID} countriesInfo={countriesInfo} />;
+						})}
 				</List>
 			</Collapse>
 		</Box>
