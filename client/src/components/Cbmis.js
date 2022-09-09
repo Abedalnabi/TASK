@@ -1,7 +1,7 @@
 import '../App.css';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './shared/navBar/NavBar';
-import AddCountries from './shared/addProducts/AddProducts';
+import AddCountries from './shared/addProduct/AddProducts';
 import CountriesList from './shared/countriesList/CountriesList';
 
 import ScrollTop from './shared/Utilities/scrollTop/ScrollTop';

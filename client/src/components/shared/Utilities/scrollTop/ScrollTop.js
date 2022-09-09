@@ -3,29 +3,29 @@ import ScrollTo from '../ScrollTo/ScrollTo';
 import './style.scss';
 
 const ScrollTop = () => {
-	const [showTopBtn, setShowTopBtn] = useState(false);
+  const [showTopBtn, setShowTopBtn] = useState(false);
 
-	useEffect(() => {
-		window.addEventListener('scroll', scrollTop);
-		return function cleanUp() {
-			window.removeEventListener('scroll', scrollTop);
-		};
-	}, []);
+  useEffect(() => {
+    window.addEventListener('scroll', scrollTop);
+    return function cleanUp() {
+      window.removeEventListener('scroll', scrollTop);
+    };
+  }, []);
 
-	function scrollTop() {
-		if (window.scrollY > 120) setShowTopBtn(true);
-		else setShowTopBtn(false);
-	}
+  function scrollTop() {
+    if (window.scrollY > 120) setShowTopBtn(true);
+    else setShowTopBtn(false);
+  }
 
-	return (
-		<>
-			{showTopBtn && (
-				<ScrollTo componentId="nav-bar" scrollTop={true}>
-					<button className="up-btn">^</button>
-				</ScrollTo>
-			)}
-		</>
-	);
+  return (
+    <>
+      {showTopBtn && (
+        <ScrollTo componentId="nav-bar" scrollTop={true}>
+          <button className="up-btn">^</button>
+        </ScrollTo>
+      )}
+    </>
+  );
 };
 
 export default ScrollTop;

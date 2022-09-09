@@ -30,10 +30,6 @@ input ProductInput {
 }
 `;
 
-// exports.CountryQueries = `
-//     getAllCountries:[Country]
-// `;
-
 exports.ProductMutation = `
     addProduct(productInput:ProductInput):Product
 `;
